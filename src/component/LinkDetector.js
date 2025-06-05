@@ -25,8 +25,7 @@ class LinkDetector extends Component {
       this.setState({ responseMessage: 'Missing token or phone number. Please log in again.', isError: true });
       return;
     }
-
-    const url = `https://fireeyes-detector-wokt.onrender.com/gas-detectors/user/admin/assign?phonenumber=${encodeURIComponent(phonenumber)}&macAddress=${encodeURIComponent(macAddress)}`;
+    const url = `https://fireeyes-detector-wokt.onrender.com/gas-detectors/user/assign?phonenumber=${encodeURIComponent(phonenumber)}&macAddress=${encodeURIComponent(macAddress)}`;
 
     try {
       const response = await fetch(url, {
