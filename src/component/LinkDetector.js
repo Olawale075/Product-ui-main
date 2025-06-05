@@ -26,7 +26,7 @@ class LinkDetector extends Component {
       return;
     }
 
-    const url = `https://fireeyes-detector-wokt.onrender.com/gas-detectors/admin/assign?phonenumber=${encodeURIComponent(phonenumber)}&macAddress=${encodeURIComponent(macAddress)}`;
+    const url = `https://fireeyes-detector-wokt.onrender.com/gas-detectors/user/admin/assign?phonenumber=${encodeURIComponent(phonenumber)}&macAddress=${encodeURIComponent(macAddress)}`;
 
     try {
       const response = await fetch(url, {
