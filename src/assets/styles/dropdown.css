@@ -1,0 +1,11 @@
+.dropdown{
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+}
+
+.dropdown2{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 5px;
+}

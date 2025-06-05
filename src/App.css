@@ -1,0 +1,8 @@
+/** @format */
+.variable__btn{
+    cursor: pointer;
+}
+
+.variable__btn:hover{
+    background: #000 !important;
+}
