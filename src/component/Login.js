@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Container, Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import "./Login.css"; // Add this at the top
 
 const Login = () => {
   const [phonenumber, setPhonenumber] = useState("");
@@ -56,6 +57,7 @@ const Login = () => {
         navigate("/home");
       } else {
         navigate("/user/linkdetector");
+   
       }
 
     } catch (err) {
@@ -65,48 +67,54 @@ const Login = () => {
   };
 
   return (
-    <Container className="mt-5">
+  <div className="login-page">
+    <Container>
       <Row className="justify-content-md-center">
         <Col md={6} lg={5}>
-          <h2 className="text-center mb-4">Login</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleLogin}>
-            <Form.Group className="mb-3">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter phone number"
-                value={phonenumber}
-                onChange={(e) => setPhonenumber(e.target.value)}
-                required
-              />
-            </Form.Group>
+          <div className="login-form-container">
+            <h2 className="text-center mb-4">Login</h2>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={handleLogin}>
+              <Form.Group className="mb-3">
+                <Form.Label>Phone Number</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter phone number"
+                  value={phonenumber}
+                  onChange={(e) => setPhonenumber(e.target.value)}
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group className="mb-4">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </Form.Group>
+              <Form.Group className="mb-4">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </Form.Group>
 
-            <Button variant="dark" type="submit" className="w-100">
-              Login
-            </Button>
-            <div className="text-center mt-2">
-              New user?{" "}
-              <Button variant="link" onClick={() => navigate("/register")}>
-                Register here
+              <Button variant="dark" type="submit" className="w-100">
+                Login
               </Button>
-            </div>
-          </Form>
+
+              <div className="text-center mt-2">
+                New user?{" "}
+                <Button variant="link" onClick={() => navigate("/register")}>
+                  Register here
+                </Button>
+              </div>
+            </Form>
+          </div>
         </Col>
       </Row>
     </Container>
-  );
+  </div>
+);
+
 };
 
 export default Login;

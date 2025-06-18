@@ -26,14 +26,15 @@ const Header = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
+              <a className="nav-link" href="/link-detector'">
+              Link Detector
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link disabled"><FaUserCircle className="fs-4"/></a>
             </li>
-          </ul>
+
+</ul>
         </div>
       </div>
     </nav>

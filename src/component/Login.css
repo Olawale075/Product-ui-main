@@ -1,0 +1,40 @@
+/* Login.css */
+.login-page {
+  background-image: url("https://images.pexels.com/photos/32546264/pexels-photo-32546264.jpeg"); /* Example fire safety bg */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.login-form-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+  color: #b30000;
+}
+
+.login-form-container h2 {
+  color: #cc0000;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.login-form-container .form-label {
+  color: #b30000;
+}
+
+.login-form-container .btn-dark {
+  background-color: #cc0000;
+  border-color: #cc0000;
+}
+
+.login-form-container .btn-dark:hover {
+  background-color: #990000;
+  border-color: #990000;
+}

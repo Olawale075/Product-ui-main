@@ -1,0 +1,51 @@
+/* LinkDetector.css */
+.link-detector-page {
+  background-image: url("https://i.imgur.com/MYfSvbw.jpg"); /* Replace with your own fire detector image if needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-detector-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+  color: #b30000;
+}
+
+.link-detector-card h2 {
+  color: #cc0000;
+  font-weight: bold;
+  text-align: center;
+}
+
+.link-detector-card .form-label {
+  color: #b30000;
+}
+
+.link-detector-card .btn-primary {
+  background-color: #cc0000;
+  border-color: #cc0000;
+}
+
+.link-detector-card .btn-primary:hover {
+  background-color: #990000;
+  border-color: #990000;
+}
+
+.alert-success {
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+}
+
+.alert-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+}

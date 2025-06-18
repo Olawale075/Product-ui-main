@@ -20,6 +20,7 @@ import UserList from './services/UserList';
 import RegisterPage from './component/RegisterPage';
 import DetectorList from './services/DetectorList';
 import LinkDetector from './component/LinkDetector';
+import UserGasDashboard from './component/UserGasDashboard';
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Login/>} /> 
            <Route path="/detector" element={<DetectorList />} />
-          <Route path="/allWear.com" element={<UserView />} />
+          <Route path="/link-detector" element={<LinkDetector />} />
+  <Route path="/user-gas-dashboard" element={<UserGasDashboard />} />
           <Route path="/new-template" element={<NewTemplate />} />
           <Route path="/shoes" element={<Shoe />} />
           <Route path="/templates/:id" element={<Template />} />
@@ -37,6 +39,8 @@ function App() {
           <Route exact path="/home" element={<Home />} />{' '}
           <Route path="/users/service" element={<UserList />} />
           <Route path="/user/linkdetector" element={<LinkDetector/>} />
+        
+          
   <Route path="/register" element={<RegisterPage/>} />
           
         </Routes>

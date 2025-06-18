@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import './LinkDetector.css';
+import { useNavigate } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 
 class LinkDetector extends Component {
   constructor(props) {
@@ -7,11 +10,17 @@ class LinkDetector extends Component {
       macAddress: '',
       responseMessage: '',
       isError: false,
+      loading: false,
     };
   }
 
   handleChange = (e) => {
     this.setState({ macAddress: e.target.value });
+  };
+
+  validateMacAddress = (mac) => {
+    const macRegex = /^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$/;
+    return macRegex.test(mac);
   };
 
   handleSubmit = async (e) => {
@@ -20,12 +29,28 @@ class LinkDetector extends Component {
     const token = localStorage.getItem("token");
     const phonenumber = localStorage.getItem("phonenumber");
     const { macAddress } = this.state;
+    const { navigate } = this.props;
 
     if (!token || !phonenumber) {
       this.setState({ responseMessage: 'Missing token or phone number. Please log in again.', isError: true });
       return;
     }
+
+    if (!this.validateMacAddress(macAddress)) {
+      this.setState({ responseMessage: 'Invalid MAC address format. Expected XX:XX:XX:XX:XX:XX', isError: true });
+      return;
+    }
+
+    // Check for duplicates
+    let savedMacs = JSON.parse(localStorage.getItem("macAddresses") || "[]");
+    if (savedMacs.includes(macAddress)) {
+      this.setState({ responseMessage: 'This MAC address is already linked.', isError: true });
+      return;
+    }
+
     const url = `https://fireeyes-detector-wokt.onrender.com/gas-detectors/user/assign?phonenumber=${encodeURIComponent(phonenumber)}&macAddress=${encodeURIComponent(macAddress)}`;
+    
+    this.setState({ loading: true });
 
     try {
       const response = await fetch(url, {
@@ -39,29 +64,34 @@ class LinkDetector extends Component {
       const text = await response.text();
 
       if (response.ok) {
-        this.setState({ responseMessage: text, isError: false }, () => {
+        // Save MAC address to list
+        savedMacs.push(macAddress);
+        localStorage.setItem("macAddresses", JSON.stringify(savedMacs));
+
+        this.setState({ responseMessage: text, isError: false, loading: false }, () => {
           setTimeout(() => {
-            window.location.href = 'https://fire-detecter-registeration-portal.vercel.app/home';
+            navigate("/user-gas-dashboard");
           }, 1500);
         });
       } else {
-        this.setState({ responseMessage: text, isError: true });
+        this.setState({ responseMessage: text, isError: true, loading: false });
       }
     } catch (error) {
       this.setState({
         responseMessage: 'Network error. Please try again.',
-        isError: true
+        isError: true,
+        loading: false
       });
     }
   };
 
   render() {
-    const { macAddress, responseMessage, isError } = this.state;
+    const { macAddress, responseMessage, isError, loading } = this.state;
 
     return (
-      <div className="container d-flex justify-content-center align-items-center vh-100 bg-light">
-        <div className="card p-4 shadow" style={{ maxWidth: '500px', width: '100%' }}>
-          <h2 className="text-center mb-4">Link Your Gas Detector</h2>
+      <div className="link-detector-page">
+        <div className="card link-detector-card">
+          <h2>Link Your Gas Detector</h2>
 
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
@@ -72,12 +102,13 @@ class LinkDetector extends Component {
                 name="macAddress"
                 value={macAddress}
                 onChange={this.handleChange}
+                placeholder="e.g. 8C:4F:00:3C:A4:AC"
                 required
               />
             </div>
 
-            <button type="submit" className="btn btn-primary w-100">
-              Link Detector
+            <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+              {loading ? <Spinner size="sm" animation="border" /> : "Link Detector"}
             </button>
           </form>
 
@@ -92,4 +123,10 @@ class LinkDetector extends Component {
   }
 }
 
-export default LinkDetector;
+// Functional wrapper for navigation
+function LinkDetectorWithNavigation() {
+  const navigate = useNavigate();
+  return <LinkDetector navigate={navigate} />;
+}
+
+export default LinkDetectorWithNavigation;

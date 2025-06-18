@@ -1,0 +1,22 @@
+.register-background {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #8b0000, #ff4d4d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-card {
+  background-color: #fff;
+  border-radius: 15px;
+  border: none;
+}
+
+.register-card .form-label {
+  font-weight: 600;
+}
+
+.register-card input,
+.register-card select {
+  border-radius: 8px;
+}
