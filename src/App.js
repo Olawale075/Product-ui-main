@@ -30,7 +30,7 @@ function App() {
           <Route exact path="/" element={<Login/>} /> 
            <Route path="/detector" element={<DetectorList />} />
           <Route path="/link-detector" element={<LinkDetector />} />
-  <Route path="/user-gas-dashboard" element={<UserGasDashboard />} />
+  <Route path="/user/dashboard" element={<UserGasDashboard />} />
           <Route path="/new-template" element={<NewTemplate />} />
           <Route path="/shoes" element={<Shoe />} />
           <Route path="/templates/:id" element={<Template />} />

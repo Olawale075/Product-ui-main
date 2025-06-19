@@ -14,6 +14,8 @@ function UserGasDashboard() {
   const [toastMessage, setToastMessage] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
   const [chartData, setChartData] = useState([]);
+
+
   const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
@@ -73,6 +75,13 @@ const fetchDetectorData = () => {
       setRefreshing(false);
     });
 };
+useEffect(() => {
+  const storedMacs = JSON.parse(localStorage.getItem("macAddress")) || [];
+  setMacList(storedMacs);
+  if (storedMacs.length > 0) {
+    setSelectedMac(storedMacs[0]); // Default to the first MAC address
+  }
+}, []);
 
 
   useEffect(() => {
@@ -128,14 +137,13 @@ const fetchDetectorData = () => {
 
             <Form.Group className="mb-4" controlId="macDropdown">
               <Form.Label>Select MAC Address</Form.Label>
-              <Form.Select
-                value={selectedMac}
-                onChange={(e) => setSelectedMac(e.target.value)}
-              >
-                {macList.map(mac => (
-                  <option key={mac} value={mac}>{mac}</option>
-                ))}
-              </Form.Select>
+              <Form.Select value={selectedMac} onChange={(e) => setSelectedMac(e.target.value)}>
+    {macList.map((mac, index) => (
+      <option key={index} value={mac}>
+        {mac}
+      </option>
+    ))}
+  </Form.Select>
 
               {macList.length > 0 && (
                 <div className="mt-2 d-flex gap-2">

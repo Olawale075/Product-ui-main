@@ -26,8 +26,8 @@ const Header = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/link-detector'">
-              Link Detector
+              <a className="nav-link" href="/link-detector">
+              <b>Link Detector</b>
               </a>
             </li>
             <li className="nav-item">

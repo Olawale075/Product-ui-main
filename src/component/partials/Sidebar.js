@@ -45,10 +45,7 @@ const Sidebar = () => {
         </NavLink>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-dark text-light text-center p-3 mt-4">
-        FireEyes © {new Date().getFullYear()} — Gas Detector Monitoring
-      </footer>
+     
     </div>
   );
 };

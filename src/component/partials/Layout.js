@@ -14,6 +14,9 @@ const Layout = ({ children }) => {
             <Container fluid className="p-5">
               {children}
             </Container>
+              <footer className="bg-dark text-light text-center p-3 mt-4">
+        FireEyes © {new Date().getFullYear()} — Gas Detector Monitoring
+      </footer>
         </div>
       </div>
     </div>
