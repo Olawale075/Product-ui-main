@@ -117,7 +117,7 @@ const RegisterPage = () => {
                       onChange={handleChange}
                       required
                     />
-                    <Button
+                      <Button
                       variant="danger"
                       className="ms-2"
                       onClick={handleSendEmailOtp}
@@ -125,6 +125,7 @@ const RegisterPage = () => {
                     >
                       Get Email OTP
                     </Button>
+                      
                   </div>
                 </Form.Group>
 
@@ -160,6 +161,8 @@ const RegisterPage = () => {
                     onChange={handleChange}
                     required
                   />
+                  
+                  
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -171,6 +174,7 @@ const RegisterPage = () => {
                     onChange={handleChange}
                     required
                   />
+            
                 </Form.Group>
 
                 <div className="d-grid">

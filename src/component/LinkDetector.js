@@ -43,10 +43,11 @@ class LinkDetector extends Component {
 
     // Check for duplicates
     let savedMacs = JSON.parse(localStorage.getItem("macAddresses") || "[]");
-    if (savedMacs.includes(macAddress)) {
-      this.setState({ responseMessage: 'This MAC address is already linked.', isError: true });
-      return;
-    }
+    // if (savedMacs.includes(macAddress)) {
+    //   this.setState({ responseMessage: 'This MAC address is already linked.', isError: true });
+    //  // return;
+    //  navigate("/user-gas-dashboard");
+    // }
 
     const url = `https://fireeyes-detector-wokt.onrender.com/gas-detectors/user/assign?phonenumber=${encodeURIComponent(phonenumber)}&macAddress=${encodeURIComponent(macAddress)}`;
     
@@ -70,7 +71,7 @@ class LinkDetector extends Component {
 
         this.setState({ responseMessage: text, isError: false, loading: false }, () => {
           setTimeout(() => {
-            navigate("/user-gas-dashboard");
+            navigate("/user/dashboard");
           }, 1500);
         });
       } else {
