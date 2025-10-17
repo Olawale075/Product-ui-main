@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './LinkDetector.css';
 import { useNavigate } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
+import Whatsapp from './Whatsapp';
 
 class LinkDetector extends Component {
   constructor(props) {
@@ -92,7 +93,7 @@ class LinkDetector extends Component {
     return (
       <div className="link-detector-page">
         <div className="card link-detector-card">
-          <h2>Link Your Gas Detector</h2>
+          <h2>Link Your Weather Station</h2>
 
           <form onSubmit={this.handleSubmit}>
             <div className="mb-3">
@@ -119,6 +120,9 @@ class LinkDetector extends Component {
             </div>
           )}
         </div>
+        <div><Whatsapp/>
+        </div>
+        
       </div>
     );
   }
