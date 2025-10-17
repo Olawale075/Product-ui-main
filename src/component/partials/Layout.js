@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
             {children}
           </Container>
           <footer className="footer text-center py-3">
-            Olawale © {new Date().getFullYear()} — Weather Station  Monitoring
+          Olawale © {new Date().getFullYear()} — Weather Station  Monitoring
           </footer>
         </div>
       </div>
