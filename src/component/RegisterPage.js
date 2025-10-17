@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
-import './RegisterPage.css'; // We’ll create this file below
+import { Form, Button, Card, Container, Row, Col, Spinner } from 'react-bootstrap';
+import './RegisterPage.css';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -14,46 +14,57 @@ const RegisterPage = () => {
     emailVerificationCode: ''
   });
 
-  const [otpSent, setOtpSent] = useState(false);
-  const [emailOtpSent, setEmailOtpSent] = useState(false);
+  const [loadingSMS, setLoadingSMS] = useState(false);
+  const [loadingEmail, setLoadingEmail] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // === SEND SMS OTP ===
   const handleSendOtp = async () => {
+    if (!formData.phonenumber) return alert('Please enter a phone number first.');
+    setLoadingSMS(true);
     try {
-      await axios.post(`https://fireeyes-detector-wokt.onrender.com/user/sendOtp/${formData.phonenumber}`);
-      setOtpSent(true);
+      await axios.post(
+        `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/sendOtp/${formData.phonenumber}`
+      );
       alert('SMS OTP sent successfully!');
     } catch (error) {
       console.error('Error sending SMS OTP:', error);
       alert('Failed to send SMS OTP.');
+    } finally {
+      setLoadingSMS(false);
     }
   };
 
+  // === SEND EMAIL OTP ===
   const handleSendEmailOtp = async () => {
+    if (!formData.email) return alert('Please enter an email first.');
+    setLoadingEmail(true);
     try {
-      await axios.post(`https://fireeyes-detector-wokt.onrender.com/user/sendOtpToEmail/${encodeURIComponent(formData.email)}`);
-      setEmailOtpSent(true);
+      await axios.post(
+        `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/sendOtpToEmail/${encodeURIComponent(formData.email)}`
+      );
       alert('Email OTP sent successfully!');
     } catch (error) {
       console.error('Error sending Email OTP:', error);
       alert('Failed to send Email OTP.');
+    } finally {
+      setLoadingEmail(false);
     }
   };
 
+  // === SUBMIT FORM ===
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoadingSubmit(true);
     try {
       const response = await axios.post(
-        'https://fireeyes-detector-wokt.onrender.com/user/verifyOtpAndCreateUser',
+        'https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/verifyOtpAndCreateUser',
         formData,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
+        { headers: { 'Content-Type': 'application/json' } }
       );
 
       if (response.status === 200 && response.data.includes('User registered successfully')) {
@@ -64,6 +75,8 @@ const RegisterPage = () => {
     } catch (error) {
       console.error('Registration error:', error.response?.data || error.message);
       alert('Registration failed: ' + (error.response?.data?.message || 'An error occurred'));
+    } finally {
+      setLoadingSubmit(false);
     }
   };
 
@@ -73,29 +86,22 @@ const RegisterPage = () => {
         <Row className="justify-content-center">
           <Col md={6}>
             <Card className="register-card p-4 shadow-lg">
-              <h3 className="text-center text-danger mb-4">🔥 Fire Detector Registration</h3>
+              <h3 className="text-center text-blue mb-4">Weather Station Registration</h3>
               <Form onSubmit={handleSubmit}>
+
+                {/* Phone Number */}
                 <Form.Group className="mb-3">
                   <Form.Label>Phone Number</Form.Label>
-                  <div className="d-flex">
-                    <Form.Control
-                      type="text"
-                      name="phonenumber"
-                      value={formData.phonenumber}
-                      onChange={handleChange}
-                      required
-                    />
-                    <Button
-                      variant="danger"
-                      className="ms-2"
-                      onClick={handleSendOtp}
-                      disabled={!formData.phonenumber}
-                    >
-                      Get OTP
-                    </Button>
-                  </div>
+                  <Form.Control
+                    type="text"
+                    name="phonenumber"
+                    value={formData.phonenumber}
+                    onChange={handleChange}
+                    required
+                  />
                 </Form.Group>
 
+                {/* Name */}
                 <Form.Group className="mb-3">
                   <Form.Label>Name</Form.Label>
                   <Form.Control
@@ -107,28 +113,19 @@ const RegisterPage = () => {
                   />
                 </Form.Group>
 
+                {/* Email */}
                 <Form.Group className="mb-3">
                   <Form.Label>Email</Form.Label>
-                  <div className="d-flex">
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                      <Button
-                      variant="danger"
-                      className="ms-2"
-                      onClick={handleSendEmailOtp}
-                      disabled={!formData.email}
-                    >
-                      Get Email OTP
-                    </Button>
-                      
-                  </div>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
                 </Form.Group>
 
+                {/* Password */}
                 <Form.Group className="mb-3">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
@@ -140,6 +137,7 @@ const RegisterPage = () => {
                   />
                 </Form.Group>
 
+                {/* Notification Preference */}
                 <Form.Group className="mb-3">
                   <Form.Label>Notification Preference</Form.Label>
                   <Form.Select
@@ -152,34 +150,70 @@ const RegisterPage = () => {
                   </Form.Select>
                 </Form.Group>
 
-                <Form.Group className="mb-3">
-                  <Form.Label>SMS OTP</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="otp"
-                    value={formData.otp}
-                    onChange={handleChange}
-                    required
-                  />
-                  
-                  
+                {/* SMS OTP Field + Button */}
+                <Form.Group className="mb-2">
+                  <Form.Label>SMS Verification Code</Form.Label>
+                  <div className="d-flex">
+                    <Form.Control
+                      type="text"
+                      name="otp"
+                      value={formData.otp}
+                      onChange={handleChange}
+                      placeholder="Enter SMS OTP"
+                      required
+                    />
+                    <Button
+                      variant="danger"
+                      className="ms-1"
+                      onClick={handleSendOtp}
+                      disabled={loadingSMS}
+                    >
+                      {loadingSMS ? (
+                        <Spinner animation="border" size="sm" />
+                      ) : (
+                        'GetOTP'
+                      )}
+                    </Button>
+                  </div>
                 </Form.Group>
 
-                <Form.Group className="mb-3">
-                  <Form.Label>Email OTP</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="emailVerificationCode"
-                    value={formData.emailVerificationCode}
-                    onChange={handleChange}
-                    required
-                  />
-            
+                {/* Email OTP Field + Button */}
+                <Form.Group className="mb-1">
+                  <Form.Label>Email Verification Code</Form.Label>
+                  <div className="d-flex">
+                    <Form.Control
+                      type="text"
+                      name="emailVerificationCode"
+                      value={formData.emailVerificationCode}
+                      onChange={handleChange}
+                      placeholder="Enter Email OTP"
+                      required
+                    />
+                    <Button
+                      variant="danger"
+                      className="ms-1"
+                      onClick={handleSendEmailOtp}
+                      disabled={loadingEmail}
+                    >
+                      {loadingEmail ? (
+                        <Spinner animation="border" size="sm" />
+                      ) : (
+                        'GetOTP'
+                      )}
+                    </Button>
+                  </div>
                 </Form.Group>
 
+                {/* Submit Button */}
                 <div className="d-grid">
-                  <Button type="submit" variant="danger">
-                    Submit Registration
+                  <Button type="submit" variant="danger" disabled={loadingSubmit}>
+                    {loadingSubmit ? (
+                      <>
+                        <Spinner animation="border" size="sm" /> Registering...
+                      </>
+                    ) : (
+                      'Submit Registration'
+                    )}
                   </Button>
                 </div>
               </Form>

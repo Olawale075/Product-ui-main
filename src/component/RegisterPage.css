@@ -1,22 +1,23 @@
 .register-background {
-  min-height: 100vh;
-  background: linear-gradient(to bottom right, #8b0000, #ff4d4d);
+  min-height: 50vh;
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkJuhs3xtJ0V94n2PYF04yJ7JqFJ3Co7odWQ&s") no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+
 .register-card {
-  background-color: #fff;
+  background-color: #fffdfd;
   border-radius: 15px;
   border: none;
 }
 
 .register-card .form-label {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .register-card input,
 .register-card select {
-  border-radius: 8px;
+  border-radius: 4px;
 }

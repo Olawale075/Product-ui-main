@@ -146,7 +146,7 @@ const DetectorList = () => {
   const handleCreate = async () => {
     try {
       await axios.post(
-        `https://fireeyes-detector-wokt.onrender.com/gas-detectors/admin/register`,
+        `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/gas-detectors/admin/register`,
         createData,
         {
           headers: {

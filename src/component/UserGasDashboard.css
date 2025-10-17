@@ -1,0 +1,43 @@
+.user-dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+/* On small screens, reduce padding & stack buttons nicely */
+@media (max-width: 768px) {
+  .user-dashboard-container {
+    padding: 1rem;
+  }
+
+  .d-flex.flex-wrap.gap-2 {
+    flex-direction: column !important;
+  }
+
+  .d-flex.flex-wrap.gap-2 button {
+    width: 100%;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    text-align: center;
+  }
+}
+
+/* On extra-small screens */
+@media (max-width: 576px) {
+  .form-select {
+    font-size: 14px;
+  }
+
+  .card-body p {
+    font-size: 14px;
+  }
+
+  .card-header {
+    font-size: 15px;
+  }
+}

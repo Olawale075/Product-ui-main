@@ -36,7 +36,7 @@ const UserList = () => {
 
   try {
     const response = await axios.get(
-      `https://fireeyes-detector-wokt.onrender.com/user/admin/?page=${page}&size=10&sort=createDateTime&sort=DESC`,
+      `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/admin/?page=${page}&size=10&sort=createDateTime&sort=DESC`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ const handleMacChange = (e) => {
 const handleUpdate = async () => {
   try {
     await axios.put(
-      `https://fireeyes-detector-wokt.onrender.com/user/admin/${editData.phoneNumbers}`,
+      `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/admin/${editData.phoneNumbers}`,
       editData,
       {
         headers: {
@@ -104,7 +104,7 @@ const handleUpdate = async () => {
     try {
       // If delete endpoint is supported, replace this with correct API
       await axios.delete(
-        `https://fireeyes-detector-wokt.onrender.com/user/admin/delete/${selectedUser.phoneNumbers}`,
+        `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/admin/delete/${selectedUser.phoneNumbers}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
