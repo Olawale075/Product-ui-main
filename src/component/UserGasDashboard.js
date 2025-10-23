@@ -103,7 +103,7 @@ function UserGasDashboard() {
           {
             time: new Date().toLocaleTimeString(),
             temp: json.gasDetector.temperature,
-            co2: json.gasDetector.co2 || 0,
+            co2: json.gasDetector.co2 ,
           },
         ]);
         setToastMessage("Data refreshed");
@@ -162,7 +162,7 @@ function UserGasDashboard() {
     const values = [
       data.gasDetector.macAddress,
       data.gasDetector.location,
-      data.gasDetector.status ? "Active" : "Inactive",
+      data.gasDetector.status ? "call for Alarm" : "No call for Alarm",
       data.gasDetector.temperature ?? "N/A",
       data.gasDetector.humidity ?? "N/A",
       data.gasDetector.co2 ?? "N/A",
@@ -240,7 +240,7 @@ function UserGasDashboard() {
               {/* Gas Detector Info */}
               <Col xs={12} md={6}>
                 <Card className="shadow-sm h-100">
-                  <Card.Header className="bg-success text-white">Gas Detector</Card.Header>
+                  <Card.Header className="bg-success text-white">Weather Detector</Card.Header>
                   <Card.Body>
                     <p><strong>MAC Address:</strong> {data.gasDetector.macAddress}</p>
                     <p><strong>Location:</strong> {data.gasDetector.location}</p>
@@ -248,10 +248,10 @@ function UserGasDashboard() {
                       <strong>Status:</strong>{" "}
                       <span
                         className={
-                          data.gasDetector.status ? "text-success" : "text-danger"
+                          data.gasDetector.status ? "text-danger" : "text-success"
                         }
                       >
-                        {data.gasDetector.status ? "Active" : "Inactive"}
+                        {data.gasDetector.status ? "call for Alarm" : "No call for Alarm"}
                       </span>
                     </p>
                     <p>
