@@ -122,11 +122,11 @@ function UserGasDashboard() {
       });
   };
 
-  // Auto-refresh every 30s
+  // Auto-refresh every 5s
   useEffect(() => {
     if (!selectedMac) return;
     fetchDetectorData();
-    const interval = setInterval(fetchDetectorData, 30000);
+    const interval = setInterval(fetchDetectorData, 5000);
     return () => clearInterval(interval);
   }, [selectedMac]);
 
