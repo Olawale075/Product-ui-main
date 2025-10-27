@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Card, Container, Row, Col, Spinner } from 'react-bootstrap';
 import './RegisterPage.css';
-
+import { useNavigate } from "react-router-dom";
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
     phonenumber: '',
@@ -17,7 +17,7 @@ const RegisterPage = () => {
   const [loadingSMS, setLoadingSMS] = useState(false);
   const [loadingEmail, setLoadingEmail] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -69,6 +69,7 @@ const RegisterPage = () => {
 
       if (response.status === 200 && response.data.includes('User registered successfully')) {
         alert('Registration successful!');
+        navigate("/register");
       } else {
         alert('Registration failed: ' + response.data);
       }
