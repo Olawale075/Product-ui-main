@@ -18,7 +18,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/auth/login",
+        "http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/auth/login",
         {
           method: "POST",
           headers: {
@@ -60,7 +60,7 @@ const Login = () => {
         navigate("/home");
       } else {
         const userResponse = await fetch(
-          `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/${phonenumber}`,
+          `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/${phonenumber}`,
           {
             method: "GET",
             headers: {

@@ -28,7 +28,7 @@ const RegisterPage = () => {
     setLoadingSMS(true);
     try {
       await axios.post(
-        `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/sendOtp/${formData.phonenumber}`
+        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/sendOtp/${formData.phonenumber}`
       );
       alert('SMS OTP sent successfully!');
     } catch (error) {
@@ -45,7 +45,7 @@ const RegisterPage = () => {
     setLoadingEmail(true);
     try {
       await axios.post(
-        `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/sendOtpToEmail/${encodeURIComponent(formData.email)}`
+        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/sendOtpToEmail/${encodeURIComponent(formData.email)}`
       );
       alert('Email OTP sent successfully!');
     } catch (error) {
@@ -62,14 +62,14 @@ const RegisterPage = () => {
     setLoadingSubmit(true);
     try {
       const response = await axios.post(
-        'https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/verifyOtpAndCreateUser',
+        'http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/verifyOtpAndCreateUser',
         formData,
         { headers: { 'Content-Type': 'application/json' } }
       );
 
       if (response.status === 200 && response.data.includes('User registered successfully')) {
         alert('Registration successful!');
-        navigate("/register");
+        navigate("/login");
       } else {
         alert('Registration failed: ' + response.data);
       }

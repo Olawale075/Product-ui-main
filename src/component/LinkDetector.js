@@ -50,7 +50,7 @@ class LinkDetector extends Component {
     //  navigate("/user-gas-dashboard");
     // }
 
-    const url = `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/gas-detectors/user/assign?phonenumber=${encodeURIComponent(phonenumber)}&macAddress=${encodeURIComponent(macAddress)}`;
+    const url = `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/gas-detectors/user/assign?phonenumber=${encodeURIComponent(phonenumber)}&macAddress=${encodeURIComponent(macAddress)}`;
     
     this.setState({ loading: true });
 

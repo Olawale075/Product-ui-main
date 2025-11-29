@@ -84,7 +84,7 @@ function UserGasDashboard() {
     }
 
     setRefreshing(true);
-    const apiUrl = `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/user/user-gas-details?phoneNumber=${phoneNumber}&macAddress=${encodeURIComponent(
+    const apiUrl = `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/user-gas-details?phoneNumber=${phoneNumber}&macAddress=${encodeURIComponent(
       selectedMac
     )}`;
 

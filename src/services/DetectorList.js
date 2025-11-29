@@ -41,7 +41,7 @@ const DetectorList = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://fireeyes-detector-wokt.onrender.com/gas-detectors/admin/all?page=0&size=10&sortBy=macAddress&order=asc`,
+        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/gas-detectors/admin/all?page=0&size=10&sortBy=macAddress&order=asc`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ const DetectorList = () => {
   const handleEditModal = async (detector) => {
     try {
       const res = await axios.get(
-        `https://fireeyes-detector-wokt.onrender.com/gas-detectors/admin/getDetector?macAddress=${detector.macAddress}`,
+        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/gas-detectors/admin/getDetector?macAddress=${detector.macAddress}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -97,7 +97,7 @@ const DetectorList = () => {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `https://fireeyes-detector-wokt.onrender.com/gas-detectors/admin/update/${editData.macAddress}`,
+        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/gas-detectors/admin/update/${editData.macAddress}`,
         editData,
         {
           headers: {
@@ -123,7 +123,7 @@ const DetectorList = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `https://fireeyes-detector-wokt.onrender.com/gas-detectors/admin/delete/${selectedDetector.macAddress}`,
+        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/gas-detectors/admin/delete/${selectedDetector.macAddress}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
