@@ -18,7 +18,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/auth/login",
+        "https://copper-imprint-479922-p4.uc.r.appspot.com/user/auth/login",
         {
           method: "POST",
           headers: {
@@ -60,7 +60,7 @@ const Login = () => {
         navigate("/home");
       } else {
         const userResponse = await fetch(
-          `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/${phonenumber}`,
+          `https://copper-imprint-479922-p4.uc.r.appspot.com/user/${phonenumber}`,
           {
             method: "GET",
             headers: {

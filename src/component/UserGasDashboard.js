@@ -84,7 +84,7 @@ function UserGasDashboard() {
     }
 
     setRefreshing(true);
-    const apiUrl = `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/user-gas-details?phoneNumber=${phoneNumber}&macAddress=${encodeURIComponent(
+    const apiUrl = `https://copper-imprint-479922-p4.uc.r.appspot.com/user/user-gas-details?phoneNumber=${phoneNumber}&macAddress=${encodeURIComponent(
       selectedMac
     )}`;
 

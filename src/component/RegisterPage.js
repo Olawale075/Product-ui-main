@@ -28,7 +28,7 @@ const RegisterPage = () => {
     setLoadingSMS(true);
     try {
       await axios.post(
-        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/sendOtp/${formData.phonenumber}`
+        `https://copper-imprint-479922-p4.uc.r.appspot.com/user/sendOtp/${formData.phonenumber}`
       );
       alert('SMS OTP sent successfully!');
     } catch (error) {
@@ -45,7 +45,7 @@ const RegisterPage = () => {
     setLoadingEmail(true);
     try {
       await axios.post(
-        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/sendOtpToEmail/${encodeURIComponent(formData.email)}`
+        `https://copper-imprint-479922-p4.uc.r.appspot.com/user/sendOtpToEmail/${encodeURIComponent(formData.email)}`
       );
       alert('Email OTP sent successfully!');
     } catch (error) {
@@ -62,7 +62,7 @@ const RegisterPage = () => {
     setLoadingSubmit(true);
     try {
       const response = await axios.post(
-        'http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/user/verifyOtpAndCreateUser',
+        'https://copper-imprint-479922-p4.uc.r.appspot.com/user/verifyOtpAndCreateUser',
         formData,
         { headers: { 'Content-Type': 'application/json' } }
       );

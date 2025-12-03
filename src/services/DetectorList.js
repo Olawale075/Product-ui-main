@@ -41,7 +41,7 @@ const DetectorList = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/gas-detectors/admin/all?page=0&size=10&sortBy=macAddress&order=asc`,
+        `https://copper-imprint-479922-p4.uc.r.appspot.com/gas-detectors/admin/all?page=0&size=10&sortBy=macAddress&order=asc`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ const DetectorList = () => {
   const handleEditModal = async (detector) => {
     try {
       const res = await axios.get(
-        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/gas-detectors/admin/getDetector?macAddress=${detector.macAddress}`,
+        `https://copper-imprint-479922-p4.uc.r.appspot.com/gas-detectors/admin/getDetector?macAddress=${detector.macAddress}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -97,7 +97,7 @@ const DetectorList = () => {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/gas-detectors/admin/update/${editData.macAddress}`,
+        `https://copper-imprint-479922-p4.uc.r.appspot.com/gas-detectors/admin/update/${editData.macAddress}`,
         editData,
         {
           headers: {
@@ -123,7 +123,7 @@ const DetectorList = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `http://fireeyes-env-1.eba-9rmeyscd.eu-north-1.elasticbeanstalk.com/gas-detectors/admin/delete/${selectedDetector.macAddress}`,
+        `https://copper-imprint-479922-p4.uc.r.appspot.com/gas-detectors/admin/delete/${selectedDetector.macAddress}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -146,7 +146,7 @@ const DetectorList = () => {
   const handleCreate = async () => {
     try {
       await axios.post(
-        `https://fireeyes-gwetb3h6fchrb4hm.westeurope-01.azurewebsites.net/gas-detectors/admin/register`,
+        `https://copper-imprint-479922-p4.uc.r.appspot.com/gas-detectors/admin/register`,
         createData,
         {
           headers: {
