@@ -15,9 +15,12 @@ class LinkDetector extends Component {
     };
   }
 
-  handleChange = (e) => {
-    this.setState({ macAddress: e.target.value });
-  };
+ handleChange = (e) => {
+  this.setState({
+    macAddress: e.target.value.toUpperCase(),
+  });
+};
+
 
   validateMacAddress = (mac) => {
     const macRegex = /^([0-9A-Fa-f]{2}:){5}([0-9A-Fa-f]{2})$/;
